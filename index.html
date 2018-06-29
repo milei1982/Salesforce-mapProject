@@ -113,7 +113,7 @@
         //load default configurations
         var MARKERS_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
         var DEFAULT_POS = { lat: 33.7490, lng: 84.3880 };
-        var DEFAULT_ZOOM = 10;
+        var DEFAULT_ZOOM = 3;
 
         //add api key 
         //var API_KEY = getAPIKey();
@@ -408,7 +408,7 @@
         function stopCurrentButtonAnimation() {
             clearInterval(animationInterval);
         }
-
+        var counter = 0;
         var markers = [];
         var latitude;
         var longitude;
@@ -420,52 +420,8 @@
                 zoom: DEFAULT_ZOOM
             });
 
-            // $("#getmarkers").click(function(){
-            //   for (var i = 0; i < 100; i++)
-            //       {
-
-            //           marker = new google.maps.Marker({
-            //               position: new google.maps.LatLng((Math.random()*(20)+30),(Math.random()*(-50)-70)),
-            //               //map: map,
-
-            //               title: 'Pushing forward'
-            //           });
-            //           markers.push(marker);
-
-            //           console.log(markers);
-
-            //           if(marker =>0){
-            //               counter++
-            //               }
-            //           console.log(counter);
-
-            //           //Add listener
-            //           google.maps.event.addListener(marker, "click", function (event) {
-            //               latitude = this.position.lat();
-            //               longitude = this.position.lng();
-            //               alert(this.position);
-            //           }); //end addListener
-
-
-            //       }
-            //     for (var i = 0; i < markers.length; i++) {
-            //         if (markers[i]) {
-            //             markers[i].setMap(map);
-            //         }
-            //     $("#counter").html("Number of markers: " + counter);
-            //         if(markers[i]==(latitude > 40 && longitude < -100)){
-            //             console.log("working");
-            //             markers[i].setMap(map);
-            //             markers.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-            //         }
-
-            //     }
-
-
-            // });
-
             $("#getmarkers").click(function() {
-                for (var i = 0; i < 100; i++) {
+                for (var i = 0; i < 10000; i++) {
 
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng((Math.random() * (20) + 30), (Math.random() * (-50) - 70)),
@@ -476,14 +432,16 @@
                     });
 
                     markers.push(marker);
+                    if (marker => 0) {
+                                counter++
+                            }
 
-
-                    console.log(markers);
+                    //console.log(markers);
 
                     /*if(marker =>0){
                         counter++
-                    }
-                    console.log(counter);*/
+                    }*/
+                    console.log(counter);
 
                     //Add listener
                     google.maps.event.addListener(marker, "click", function(event) {
@@ -491,6 +449,12 @@
                         longitude = this.position.lng();
                         alert(this.position);
                     }); //end addListener
+                    
+
+
+
+
+                }
                     var counterG = 0;
                     var counterB = 0;
                     var counterY = 0;
@@ -500,7 +464,7 @@
 
                         latitude = markers[i].position.lat();
                         longitude = markers[i].position.lng();
-                        console.log("this is " + latitude + ", " + longitude);
+                        //console.log("this is " + latitude + ", " + longitude);
                         if (latitude > 40 && longitude < -100) {
 
                             if (markers => 0) {
@@ -522,9 +486,9 @@
                         } else if (latitude < 40 && longitude < -100) {
 
                             if (markers => 0) {
-                                counterO++
+                                counterY++
                             }
-                            $("#counterYellow").html("Number of yellow markers: " + counterO);
+                            $("#counterYellow").html("Number of yellow markers: " + counterY);
                             markers[i].setMap(map);
                             markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
 
@@ -543,10 +507,6 @@
 
                     }
 
-
-
-
-                }
             });
 
             // Deletes all markers in the array by removing references to them 
@@ -577,13 +537,9 @@
                 getCurrentLocation();
             });
 
-            /*google.maps.event.addListener(map, "click", function(event) {
-        var lat = event.latLng.lat();
-        var lng = event.latLng.lng();
-        // populate yor box/field with lat, lng
-        geocodePosition(locationMarker, {lat:lat, lng:lng})
-  });*/
+            
         }
+
 
 
 
