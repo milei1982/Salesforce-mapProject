@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 </head>
- 
+
 <body>
-    <apex:page showHeader="false" standardController="Location__c" recordSetVar="coordinates" tabStyle="Location__c">
+    <!-- <apex:page showHeader="false" standardController="Location__c" recordSetVar="coordinates" tabStyle="Location__c"> -->
         <style>
         html,
         body {
@@ -99,6 +99,16 @@
         .set-button {
             background: #36a0fe !important;
         }
+
+        @media only screen and (max-width: 600px) {
+           /* body {
+                width: 80%;
+                height: 80%;
+            }
+            #group{
+
+            }*/
+        }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
         </script>
@@ -112,8 +122,8 @@
 
         //load default configurations
         var MARKERS_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
-        var DEFAULT_POS = { lat: 33.7490, lng: 84.3880 };
-        var DEFAULT_ZOOM = 3;
+        var DEFAULT_POS = { lat: 25.784099, lng: -80.128080 };
+        var DEFAULT_ZOOM = 5;
 
         //add api key 
         //var API_KEY = getAPIKey();
@@ -421,7 +431,7 @@
             });
 
             $("#getmarkers").click(function() {
-                for (var i = 0; i < 10000; i++) {
+                for (var i = 0; i < 100; i++) {
 
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng((Math.random() * (20) + 30), (Math.random() * (-50) - 70)),
@@ -433,8 +443,8 @@
 
                     markers.push(marker);
                     if (marker => 0) {
-                                counter++
-                            }
+                        counter++
+                    }
 
                     //console.log(markers);
 
@@ -449,63 +459,156 @@
                         longitude = this.position.lng();
                         alert(this.position);
                     }); //end addListener
-                    
+
 
 
 
 
                 }
-                    var counterG = 0;
-                    var counterB = 0;
-                    var counterY = 0;
-                    var counterR = 0;
+                var counterG = 0;
+                var counterB = 0;
+                var counterY = 0;
+                var counterR = 0;
 
-                    for (var i = 0; i < markers.length; i++) {
+                for (var i = 0; i < markers.length; i++) {
 
-                        latitude = markers[i].position.lat();
-                        longitude = markers[i].position.lng();
-                        //console.log("this is " + latitude + ", " + longitude);
-                        if (latitude > 40 && longitude < -100) {
+                    latitude = markers[i].position.lat();
+                    longitude = markers[i].position.lng();
+                    //console.log("this is " + latitude + ", " + longitude);
+                    if (latitude > 40 && longitude < -100) {
 
-                            if (markers => 0) {
-                                counterG++
-                            }
-
-                            $("#counterGreen").html("Number of green markers: " + counterG);
-                            markers[i].setMap(map);
-                            markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-                        } else if (latitude > 40 && longitude > -100) {
-
-                            if (markers => 0) {
-                                counterB++
-                            }
-                            $("#counterBlue").html("Number of blue markers: " + counterB);
-                            markers[i].setMap(map);
-                            markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-
-                        } else if (latitude < 40 && longitude < -100) {
-
-                            if (markers => 0) {
-                                counterY++
-                            }
-                            $("#counterYellow").html("Number of yellow markers: " + counterY);
-                            markers[i].setMap(map);
-                            markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
-
-                        } else if (latitude < 40 && longitude > -100) {
-
-                            if (markers => 0) {
-                                counterR++
-                            }
-                            $("#counterRed").html("Number of red markers: " + counterR);
-                            markers[i].setMap(map);
-                            markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-
+                        if (markers => 0) {
+                            counterG++
                         }
 
+                        $("#counterGreen").html("Number of green markers: " + counterG);
+                        markers[i].setMap(map);
+                        markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                    } else if (latitude > 40 && longitude > -100) {
 
+                        if (markers => 0) {
+                            counterB++
+                        }
+                        $("#counterBlue").html("Number of blue markers: " + counterB);
+                        markers[i].setMap(map);
+                        markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+
+                    } else if (latitude < 40 && longitude < -100) {
+
+                        if (markers => 0) {
+                            counterY++
+                        }
+                        $("#counterYellow").html("Number of yellow markers: " + counterY);
+                        markers[i].setMap(map);
+                        markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+
+                    } else if (latitude < 40 && longitude > -100) {
+
+                        if (markers => 0) {
+                            counterR++
+                        }
+                        $("#counterRed").html("Number of red markers: " + counterR);
+                        markers[i].setMap(map);
+                        markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
                     }
+
+
+
+                }
+
+            });
+            $("#beachmarkers").click(function() {
+                for (var i = 0; i < 10; i++) {
+
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng((Math.random() * (0.014) + 25.784039), (Math.random() * (-0.003) - 80.125263)),
+                        //map: map,
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/pink-dot.png',
+
+                        title: 'Pushing forward'
+                    });
+
+                    markers.push(marker);
+                    if (marker => 0) {
+                        counter++
+                    }
+
+                    //console.log(markers);
+
+                    /*if(marker =>0){
+                        counter++
+                    }*/
+                    console.log(counter);
+
+                    //Add listener
+                    google.maps.event.addListener(marker, "click", function(event) {
+                        latitude = this.position.lat();
+                        longitude = this.position.lng();
+                        alert(this.position);
+                    }); //end addListener
+
+
+
+
+
+                }
+                var counterbeach = 0;
+                for (var i = 0; i < markers.length; i++) {
+                    if (markers => 0) {
+                        counterbeach++
+                    }
+                    $("#counterBeach").html("Number of beach markers: " + counterbeach);
+                    markers[i].setMap(map);
+
+                }
+
+                // for (var i = 0; i < markers.length; i++) {
+
+                //     latitude = markers[i].position.lat();
+                //     longitude = markers[i].position.lng();
+                //     //console.log("this is " + latitude + ", " + longitude);
+                //     if (latitude > 40 && longitude < -100) {
+
+                //         if (markers => 0) {
+                //             counterG++
+                //         }
+
+                //         $("#counterGreen").html("Number of green markers: " + counterG);
+                //         markers[i].setMap(map);
+                //         markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                //     } else if (latitude > 40 && longitude > -100) {
+
+                //         if (markers => 0) {
+                //             counterB++
+                //         }
+                //         $("#counterBlue").html("Number of blue markers: " + counterB);
+                //         markers[i].setMap(map);
+                //         markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+
+                //     } else if (latitude < 40 && longitude < -100) {
+
+                //         if (markers => 0) {
+                //             counterY++
+                //         }
+                //         $("#counterYellow").html("Number of yellow markers: " + counterY);
+                //         markers[i].setMap(map);
+                //         markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+
+                //     } else if (latitude < 40 && longitude > -100) {
+
+                //         if (markers => 0) {
+                //             counterR++
+                //         }
+                //         $("#counterRed").html("Number of red markers: " + counterR);
+                //         markers[i].setMap(map);
+                //         markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+
+                //     }
+
+
+
+                // }
 
             });
 
@@ -537,7 +640,7 @@
                 getCurrentLocation();
             });
 
-            
+
         }
 
 
@@ -554,27 +657,32 @@
         }
         </script>
         <input id="pac-input" class="controls" type="text" placeholder="Enter a location" />
-        <button id="getmarkers" class="controls"> Get Markers
-        </button>
-        
-        <button id="reset" class="controls">Reset
-        </button>
-        <div id= "counterGreen" class = "controls">
+        <div class = "flex-container" id="group">
+            <button id="getmarkers" class="controls"> Get Markers
+            </button>
+            <button id="beachmarkers" class="controls"> Beach Markers
+            </button>
+            <button id="reset" class="controls">Reset
+            </button>
+            <div id="counterGreen" class="controls">
+            </div>
+            <div id="counterBlue" class="controls">
+            </div>
+            <div id="counterYellow" class="controls">
+            </div>
+            <div id="counterRed" class="controls">
+            </div>
+            <div id="counterBeach" class="controls">
+            </div>
         </div>
-        <div id= "counterBlue" class = "controls">
-        </div>
-        <div id= "counterYellow" class = "controls">
-        </div>
-        <div id= "counterRed" class = "controls">
-        </div> 
         <div id="popup">
             <div id="container">
                 <div id="msg"></div>
             </div>
         </div>
-        <div id="map">
+        <div id="map" >
         </div>
 </body>
-</apex:page>
+<!-- </apex:page> -->
 
 </html>
